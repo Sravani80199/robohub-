@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RoboHub — Robotics AI Prototype</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+.app{display:flex;min-height:100vh}.side{width:230px;background:#101827;color:white;padding:24px 16px}
+.logo{font-size:25px;font-weight:800;margin-bottom:30px}.logo span{color:#55d6ff}
+.nav button{width:100%;padding:13px 14px;margin:5px 0;border:0;border-radius:10px;background:transparent;color:#cbd5e1;text-align:left;font-size:15px;cursor:pointer}.nav button.active,.nav button:hover{background:#20304a;color:white}
+.main{flex:1;padding:28px;max-width:1200px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.badge{background:#e4f7ff;color:#087ca8;padding:8px 12px;border-radius:20px;font-size:13px;font-weight:700}
+.page{display:none}.page.active{display:block}.hero{background:linear-gradient(135deg,#15243b,#176b91);color:white;border-radius:22px;padding:34px;display:flex;justify-content:space-between;gap:20px;align-items:center}.hero h1{font-size:36px;margin:0 0 10px}.hero p{color:#d8edf6;max-width:620px}.robot{font-size:90px}.btn{background:#55d6ff;color:#082033;border:0;border-radius:10px;padding:12px 18px;font-weight:800;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:20px}.card{background:white;border-radius:16px;padding:20px;box-shadow:0 5px 18px #13223812}.card h3{margin-top:0}.icon{font-size:34px}.bar{height:9px;background:#e7edf3;border-radius:10px;overflow:hidden}.fill{height:100%;background:#18a9d6}.chat{height:390px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;padding:10px}.msg{padding:10px 13px;border-radius:13px;margin:8px 0;max-width:75%}.bot{background:#eaf5fa}.me{background:#17304b;color:white;margin-left:auto}.input{display:flex;gap:8px}.input input{flex:1;padding:13px;border:1px solid #d5dde7;border-radius:10px}.control{display:grid;grid-template-columns:repeat(3,70px);gap:10px;justify-content:center;margin:20px}.control button{height:55px;border:0;border-radius:12px;background:#17304b;color:white;font-size:20px;cursor:pointer}.control .stop{background:#d94b4b}.robotbox{text-align:center;font-size:100px}.small{color:#64748b;font-size:13px}
+@media(max-width:700px){.side{width:70px;padding:15px 8px}.logo{font-size:18px;text-align:center}.nav button{font-size:0;text-align:center}.nav button:first-letter{font-size:20px}.main{padding:16px}.hero{padding:22px}.hero h1{font-size:28px}.robot{font-size:60px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side"><div class="logo">🤖 Robo<span>Hub</span></div>
+<div class="nav">
+<button class="active" onclick="show('home',this)">🏠 Home</button>
+<button onclick="show('robots',this)">🦾 Robots</button>
+<button onclick="show('ai',this)">💬 AI Assistant</button>
+<button onclick="show('learn',this)">📚 Learn</button>
+<button onclick="show('control',this)">🎮 Control</button>
+<button onclick="show('profile',this)">👤 Profile</button>
+</div></aside>
+<main class="main">
+<div class="top"><div><h2 id="title">Dashboard</h2><div class="small">AI-powered robotics platform prototype</div></div><div class="badge">● Prototype Online</div></div>
+
+<section id="home" class="page active">
+<div class="hero"><div><h1>Build. Learn. Control.</h1><p>RoboHub brings robotics learning, AI assistance and robot-control tools into one simple platform.</p><button class="btn" onclick="show('robots')">Explore Robots</button></div><div class="robot">🤖</div></div>
+<div class="grid"><div class="card"><div class="icon">🦾</div><h3>My Robots</h3><p>3 registered robots</p></div><div class="card"><div class="icon">📚</div><h3>Learning</h3><p>68% course progress</p><div class="bar"><div class="fill" style="width:68%"></div></div></div><div class="card"><div class="icon">⚡</div><h3>AI Tasks</h3><p>12 tasks completed</p></div></div>
+</section>
+
+<section id="robots" class="page"><div class="grid">
+<div class="card"><div class="robotbox">🤖</div><h3>Robo-X1</h3><p>Educational mobile robot</p><span class="badge">Online</span></div>
+<div class="card"><div class="robotbox">🦾</div><h3>ArmBot</h3><p>Robotic arm prototype</p><span class="badge">Ready</span></div>
+<div class="card"><div class="robotbox">🚗</div><h3>RoboCar</h3><p>Autonomous vehicle prototype</p><span class="badge">Offline</span></div>
+</div></section>
+
+<section id="ai" class="page"><div class="card chat"><div class="messages" id="messages"><div class="msg bot">Hello! I'm RoboHub AI. Ask me about robotics, sensors, motors or programming.</div></div><div class="input"><input id="question" placeholder="Ask RoboHub AI..." onkeydown="if(event.key==='Enter')ask()"><button class="btn" onclick="ask()">Send</button></div></div></section>
+
+<section id="learn" class="page"><div class="grid">
+<div class="card"><h3>🔌 Electronics Basics</h3><p>Learn sensors, LEDs and motor drivers.</p><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+<div class="card"><h3>🐍 Python for Robotics</h3><p>Control robots with Python programming.</p><div class="bar"><div class="fill" style="width:45%"></div></div></div>
+<div class="card"><h3>🧠 AI & Computer Vision</h3><p>Introduction to intelligent robots.</p><div class="bar"><div class="fill" style="width:25%"></div></div></div>
+</div></section>
+
+<section id="control" class="page"><div class="card" style="text-align:center"><h3>Robo-X1 Control Panel</h3><div class="robotbox">🤖</div><div class="control"><span></span><button onclick="move('Forward')">↑</button><span></span><button onclick="move('Left')">←</button><button class="stop" onclick="move('Stop')">■</button><button onclick="move('Right')">→</button><span></span><button onclick="move('Backward')">↓</button><span></span></div><p id="status" class="badge">Status: Ready</p><p class="small">Prototype controls only — no physical robot is connected.</p></div></section>
+
+<section id="profile" class="page"><div class="card"><h3>Student / Developer Profile</h3><p><b>Name:</b> S. Sravani</p><p><b>Role:</b> RoboHub Explorer</p><p><b>Projects:</b> 4</p><p><b>Learning progress:</b> 68%</p><button class="btn" onclick="alert('Profile saved in prototype mode.')">Save Profile</button></div></section>
+</main></div>
+<script>
+const names={home:'Dashboard',robots:'My Robots',ai:'AI Assistant',learn:'Learning Center',control:'Robot Control',profile:'Profile'};
+function show(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('title').textContent=names[id]}
+function ask(){let i=document.getElementById('question'),q=i.value.trim();if(!q)return;let m=document.getElementById('messages');m.innerHTML+=`<div class="msg me">${q}</div>`;let a='I can help with robotics basics, sensors, motors, Python, Arduino and AI. Try asking: “How does a robot sensor work?”';if(/sensor/i.test(q))a='Sensors help a robot detect information such as distance, light, temperature or motion.';if(/motor/i.test(q))a='Motors convert electrical energy into movement. A motor driver is commonly used to control them.';m.innerHTML+=`<div class="msg bot">${a}</div>`;i.value='';m.scrollTop=m.scrollHeight}
+function move(x){document.getElementById('status').textContent='Status: '+x+' command sent'}
+</script>
+</body></html>
